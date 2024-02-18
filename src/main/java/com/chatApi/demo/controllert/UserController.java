@@ -1,0 +1,72 @@
+package com.chatApi.demo.controllert;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.chatApi.demo.dto.LoginByEmailDto;
+
+import com.chatApi.demo.entity.User;
+
+import com.chatApi.demo.response.UserAndContactResponse;
+import com.chatApi.demo.service.MessageService;
+import com.chatApi.demo.service.UserService;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpSession;
+
+@CrossOrigin(origins = "http://localhost:5174", allowCredentials = "true")
+@RestController
+@RequestMapping("api")
+public class UserController {
+
+	@Autowired
+	UserService userService;
+
+	@Autowired
+	MessageService messageService;
+
+	@GetMapping("/users")
+	public UserAndContactResponse getAll(HttpSession session) {
+		User user = (User) session.getAttribute("id");
+		List<User> contacts = userService.getAll();
+
+		// removing the current user from all user
+		for (int i = 0; i < contacts.size(); i++) {
+			if (contacts.get(i).getId() == user.getId()) {
+				contacts.remove(i);
+			}
+		}
+
+		UserAndContactResponse res = new UserAndContactResponse(user, contacts);
+		return res;
+	}
+
+	@PostMapping("/users")
+	public User registration(@RequestBody User user, HttpSession session) {
+
+		User newUser = userService.save(user);
+		session.setAttribute("id", user);
+
+		return newUser;
+	}
+
+	@PostMapping("/users/email")
+	public User logInByEmail(@RequestBody LoginByEmailDto emailDto, HttpSession session) {
+
+		User user = userService.findByEmail(emailDto.getEmail());
+		if (user != null) {
+			session.setAttribute("id", user);
+		}
+
+		return user;
+	}
+
+}
