@@ -26,6 +26,10 @@ public class MessageService {
 		return messageRepository.save(message);
 	}
 	
+	public void delete(long messageId) {
+		 messageRepository.deleteById(messageId);
+	}
+	
 	public List<Message> findMessagesOfSenderAndReciever(long senderId, long receieverId) {
 		
 		return messageRepository.findMessages(senderId, receieverId);

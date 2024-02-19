@@ -1,5 +1,9 @@
 package com.chatApi.demo.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
@@ -22,6 +26,17 @@ public class Message {
 	
 	private long senderId;
 	private long receiverId;
+	
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	@CreationTimestamp
+	private LocalDateTime createdAt;
 	
 	public long getSenderId() {
 		return senderId;

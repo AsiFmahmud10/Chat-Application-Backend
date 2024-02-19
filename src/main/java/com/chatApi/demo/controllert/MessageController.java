@@ -3,6 +3,7 @@ package com.chatApi.demo.controllert;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -10,7 +11,9 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,16 +46,23 @@ public class MessageController {
 
 	
 	
+	
+	@DeleteMapping("/message/{messageId}")
+	public ResponseEntity<String> remove(@PathVariable long messageId) {
+		messageService.delete(messageId);
+		return ResponseEntity.ok("Message delete Successful");
+	}
+	
+	
 	@PostMapping("/message")
-	public String sendMessage(@RequestBody SendMessageDto msgDto, HttpSession session ) {
+	public Message sendMessage(@RequestBody SendMessageDto msgDto, HttpSession session ) {
 		User user = (User) session.getAttribute("id");
 		Message message = new Message();
 		message.setSenderId(user.getId());
 		message.setReceiverId(msgDto.getReceiverId());
 		message.setContent(msgDto.getMsg());
-		messageService.save(message);
 		
-		return "err?" ;
+		return messageService.save(message); 
 	}
 	
 	@PostMapping("/message/reciever")
