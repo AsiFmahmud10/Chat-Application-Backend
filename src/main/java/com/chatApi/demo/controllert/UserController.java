@@ -64,29 +64,34 @@ public class UserController {
 	}
 
 	@PostMapping("/users")
-	public  ResponseEntity<User> registration(@RequestBody User user, HttpSession session) {
+	public ResponseEntity<User> registration(@RequestBody User user, HttpSession session) {
 
 		User newUser = userService.save(user);
 		session.setAttribute("id", user);
 
-		return new ResponseEntity<User>(newUser, HttpStatus.CREATED) ;
+		return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
 	}
-    
-    	
+
 	@PostMapping("/users/email")
 	public ResponseEntity<User> logInByEmail(@RequestBody LoginByEmailDto emailDto, HttpSession session) {
+        try {
+        	User user = userService.findByEmail(emailDto.getEmail());
+    		
+    		if (user != null) {
+    			session.setAttribute("id", user);
+    		}else {
+    			return null;
+    		}
 
-		User user = userService.findByEmail(emailDto.getEmail());
-        		
-		if (user != null) {
-			session.setAttribute("id", user);
-		}else {
-			return null;
-		}
-
-		return new ResponseEntity<User>(user, HttpStatus.OK);
+    		return new ResponseEntity<User>(user, HttpStatus.OK);
+        	
+        }
+        catch(Exception e) {
+        	return null;
+        }
+		
 	}
-	
+
 	@GetMapping("/users/logout")
 	public ResponseEntity<String> signOut(HttpSession session) {
 		session.invalidate();

@@ -58,6 +58,7 @@ public class MessageController {
 
 	@DeleteMapping("/message/{messageId}")
 	public ResponseEntity<String> remove(@PathVariable long messageId, HttpSession session) {
+		
 		try {
 			User user = (User) session.getAttribute("id");
 			messageService.delete(messageId);
@@ -72,6 +73,7 @@ public class MessageController {
 	@PostMapping("/message/reciever")
 	public ResponseEntity<List<Message>> findMessagesOfSenderAndReciever(@RequestBody SpecificMsgDto msgDto,
 			HttpSession session) {
+		
 		try {
 			User user = (User) session.getAttribute("id");
 			return new ResponseEntity<List<Message>>(
@@ -84,12 +86,12 @@ public class MessageController {
 
 	}
 
-	@MessageMapping("/notify")
+	@MessageMapping("/notify-{userId}")
 	@SendTo("/topic/sub")
-	public String notify(@Payload String signal) {
+	public String notify(@Payload String signal, @DestinationVariable String userId) {
 		// send message to the users who subscribe to "/topic/sub"
 
-		return signal;
+		return userId;
 	}
 
 //	@GetMapping("/message")
