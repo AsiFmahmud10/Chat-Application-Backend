@@ -14,14 +14,14 @@ public class Config implements WebSocketMessageBrokerConfigurer {
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		
         //create connection endpoint 		
-		registry.addEndpoint("/ws").setAllowedOriginPatterns("http://localhost:5174").withSockJS();
+		registry.addEndpoint("/ws").setAllowedOrigins("http://localhost:5174").withSockJS();
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
 		
 		// Broker will route the msg to the destination starting with queue
-		registry.enableSimpleBroker("/queue");
+		registry.enableSimpleBroker("/topic","/queue");
        //sender will send at the point of broker prefix with app  		
 		registry.setApplicationDestinationPrefixes("/app");
 	}
