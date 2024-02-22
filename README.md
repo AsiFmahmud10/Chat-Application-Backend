@@ -53,9 +53,6 @@ This is a GET request and it is used to get all users except the user who is req
 }
 ```
 
-
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
 ## End-point: Registration
 This request is used for registration purpose. Do not need to provide Id.
 
@@ -211,26 +208,33 @@ This post request is used to get the conversation between two users. We get send
 ```
 
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
-
-
 ## End-point: Delete Message
 This request is used to delete a Message using the message id. A successful Delete request response returns a massage with status code 200.
 ### Method: DELETE
 >```
 >http://localhost:8082/message/6656
 >```
-### Body (**raw**)
-
-```json
-
-```
 
 ### Response: 200
 ```json
 Message delete Successful
 ```
 
+## Web Socket
+>```
+>app/notify-{userId}
+>```
+user send message at point app/notify-{userId}. We can extract the userId part and work with it. 
+>```
+>topic/sub
+>```
+Component subscribe to topic/sub can get message.  
+
+## Setup :
+### Bacend
+- setup JDK and STS
+- Clone the repo and open with STS
+- Run the application
 
 Application Default Port : 8082
 Database : H2 database is used(so in case of test purpose no need to configure other database)
@@ -239,15 +243,20 @@ Database : H2 database is used(so in case of test purpose no need to configure o
            username : sa
            password : password
 
-Setup:
-1/ setup JDK and STS
-2/ Clone the repo and open with STS
-3/ Run the application
+### Frontend
+Setup :
+
+- Install Node.js version 18+. 20+
+- Clone the Repository
+- git clone https://github.com/AsiFmahmud10/Chat-Application.git
+- cd /Chat-Application
+- npm install
+- npm run dev
+[ It is required to open it at http://localhost:5174/ . By default it will open it at 5174port but if the port is busy then it will open in other port. Make sure 5174 is open ]
 
 
 
 
-⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃ ⁃
 _________________________________________________
 Powered By: [postman-to-markdown](https://github.com/bautistaj/postman-to-markdown/)
 
