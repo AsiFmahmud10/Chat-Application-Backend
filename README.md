@@ -243,7 +243,8 @@ Database : H2 database is used(so in case of test purpose no need to configure o
            username : sa
            password : password
 
-### Frontend
+### Frontend 
+Forntend Part Link : https://github.com/AsiFmahmud10/Chat-Application/blob/master/README.md
 Setup :
 
 - Install Node.js version 18+. 20+
