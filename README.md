@@ -255,34 +255,6 @@ Setup :
 - npm run dev
 [ It is required to open it at http://localhost:5174/ . By default it will open it at 5174port but if the port is busy then it will open in other port. Make sure 5174 is open ]
 
-### Project Images :
-### Home :
-<img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/home1.png" width="60%"> 
-
-### Home :
-<img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/home2.png" width="60%">
-
-### Registration :
-<img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/reg.png" width="60%">
-
-### Login :
-<img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/login.png" width="60%">
-
-
-### Mobile Views :
-
-### login | Registration :
-<p float="left">
-  <img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/mb-login.png" width="300px" />
-  <img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/mb-reg.png" width="300px" /> 
-</p>
-
-### Home :
-<p float="left">
-  <img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/mb-home1.png" width="300px" />
-  <img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/mb-home2%20.png" width="300px" /> 
-  
-</p>
 
 
 _________________________________________________
