@@ -280,7 +280,7 @@ Setup :
 ### Home :
 <p float="left">
   <img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/mb-home1.png" width="300px" />
-  <img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/mb-home2.png" width="300px" /> 
+  <img src="https://github.com/AsiFmahmud10/Chat-Application-Backend/blob/master/Project%20Picture/mb-home2%20.png" width="300px" /> 
   
 </p>
 
